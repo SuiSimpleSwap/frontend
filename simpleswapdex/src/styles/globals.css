@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323:wght@400&family=Orbitron:wght@400;700;900&display=swap');
+
+/* Neo-Cyberpunk GameFi Theme */
+:root {
+  /* Neon Colors */
+  --neon-blue: #00ffff;
+  --neon-purple: #8a2be2;
+  --neon-green: #39ff14;
+  --neon-pink: #ff007f;
+  --neon-orange: #ff6600;
+  
+  /* Dark Background Variants */
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #1a1a2e;
+  --bg-tertiary: #16213e;
+  --bg-card: rgba(26, 26, 46, 0.8);
+  --bg-modal: rgba(10, 10, 15, 0.95);
+  
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --text-accent: var(--neon-blue);
+  --text-danger: #ff4757;
+  --text-success: var(--neon-green);
+  
+  /* Borders & Glows */
+  --border-glow: 0 0 10px currentColor;
+  --border-glow-strong: 0 0 20px currentColor, 0 0 40px currentColor;
+  --card-glow: 0 0 20px rgba(0, 255, 255, 0.3);
+  
+  /* Fonts */
+  --font-pixel: 'VT323', monospace;
+  --font-tech: 'Orbitron', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-tech);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Cyberpunk Background Animation */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(57, 255, 20, 0.05) 0%, transparent 50%);
+  z-index: -1;
+  animation: backgroundPulse 4s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* Glitch Animation */
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* Neon Glow Animation */
+@keyframes neonGlow {
+  0%, 100% { box-shadow: 0 0 5px currentColor; }
+  50% { box-shadow: var(--border-glow-strong); }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Hover Shake Animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+/* Utility Classes */
+.neon-text {
+  text-shadow: var(--border-glow);
+  animation: neonGlow 2s ease-in-out infinite;
+}
+
+.pixel-font {
+  font-family: var(--font-pixel);
+}
+
+.tech-font {
+  font-family: var(--font-tech);
+}
+
+.glitch-effect:hover {
+  animation: glitch 0.3s ease-in-out;
+}
+
+.hover-shake:hover {
+  animation: shake 0.2s ease-in-out;
+}
+
+.glow-border {
+  border: 1px solid currentColor;
+  box-shadow: var(--border-glow);
+}
+
+.card-glow {
+  box-shadow: var(--card-glow);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-blue);
+  border-radius: 4px;
+  box-shadow: 0 0 5px var(--neon-blue);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-purple);
+  box-shadow: 0 0 10px var(--neon-purple);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  border: 2px solid transparent;
+  border-top: 2px solid var(--neon-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* GameFi Button Styles */
+.gamefi-button {
+  background: linear-gradient(45deg, var(--bg-secondary), var(--bg-tertiary));
+  border: 1px solid var(--neon-blue);
+  color: var(--neon-blue);
+  font-family: var(--font-tech);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.gamefi-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.gamefi-button:hover::before {
+  left: 100%;
+}
+
+.gamefi-button:hover {
+  box-shadow: var(--border-glow-strong);
+  transform: translateY(-2px);
+}
+
+.gamefi-button:active {
+  transform: translateY(0);
+}
+
+/* XP Bar */
+.xp-bar {
+  background: var(--bg-secondary);
+  border: 1px solid var(--neon-green);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.xp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--neon-green), var(--neon-blue));
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px var(--neon-green);
+}
+
+/* Loot Crate Animation */
+@keyframes crateBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-5px) scale(1.05); }
+}
+
+.loot-crate {
+  animation: crateBounce 2s ease-in-out infinite;
+}
+
+.loot-crate:hover {
+  animation: crateBounce 0.5s ease-in-out infinite;
+}
